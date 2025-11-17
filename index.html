@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Guia de Sobrevivência - SNCT 2025</title>
+    <style>
+      :root {
+        --bg-color: #1a1a1a;
+        --card-bg: #2d2d2d;
+        --text-primary: #ffffff;
+        --text-secondary: #b0b0b0;
+        --accent-go: #00add8;
+        --accent-react: #61dafb;
+        --accent-redis: #dc382d;
+        --accent-warning: #f1c40f;
+        --accent-docker: #2496ed;
+        --accent-cassandra: #1287b1;
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background-color: var(--bg-color);
+        color: var(--text-primary);
+        line-height: 1.6;
+      }
+
+      /* Header */
+      header {
+        background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+        padding: 3rem 1.5rem;
+        text-align: center;
+        border-bottom: 4px solid var(--accent-react);
+      }
+
+      h1 {
+        font-size: 2.5rem;
+        margin-bottom: 0.5rem;
+      }
+      .subtitle {
+        color: var(--accent-react);
+        font-weight: bold;
+        letter-spacing: 1px;
+      }
+
+      /* Container */
+      .container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 2rem 1.5rem;
+      }
+
+      /* Sections */
+      section {
+        margin-bottom: 4rem;
+      }
+      h2 {
+        border-left: 5px solid var(--accent-go);
+        padding-left: 15px;
+        margin-bottom: 1.5rem;
+        font-size: 1.8rem;
+      }
+
+      /* Cards */
+      .card-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 1.5rem;
+      }
+
+      .card {
+        background-color: var(--card-bg);
+        border-radius: 12px;
+        padding: 1.5rem;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        transition: transform 0.2s;
+        border: 1px solid #444;
+        display: flex; /* Para alinhar o mascote */
+        flex-direction: column;
+        align-items: center; /* Centralizar conteúdo do card */
+        text-align: center;
+      }
+
+      .card:hover {
+        transform: translateY(-5px);
+        border-color: var(--accent-react);
+      }
+
+      .card-icon {
+        font-size: 2rem;
+        margin-bottom: 1rem;
+        display: block;
+      }
+      .card-title {
+        color: var(--accent-go);
+        font-size: 1.2rem;
+        margin-bottom: 0.5rem;
+        display: block;
+        font-weight: bold;
+      }
+      .tech-tag {
+        background: #444;
+        color: #fff;
+        padding: 2px 8px;
+        border-radius: 4px;
+        font-size: 0.8rem;
+        text-transform: uppercase;
+        margin-right: 5px;
+      }
+
+      /* Analogy Highlight */
+      .analogy-box {
+        background-color: rgba(0, 173, 216, 0.1);
+        border-left: 4px solid var(--accent-go);
+        padding: 1.5rem;
+        border-radius: 0 8px 8px 0;
+        margin: 1rem 0;
+      }
+      .analogy-title {
+        color: var(--accent-go);
+        font-weight: bold;
+        display: block;
+        margin-bottom: 0.5rem;
+      }
+      .analogy-box img {
+        max-height: 30px; /* Mascotes pequenos para as analogias */
+        margin-right: 8px;
+        vertical-align: middle;
+      }
+
+      /* Mascotes nos cards de "Quem é Quem" */
+      .card .mascot-img {
+        width: 80px; /* Tamanho maior para os mascotes principais */
+        height: 80px;
+        object-fit: contain;
+        margin-bottom: 1rem;
+        filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.2)); /* Leve brilho */
+      }
+
+      /* Footer */
+      footer {
+        text-align: center;
+        padding: 2rem;
+        color: var(--text-secondary);
+        font-size: 0.9rem;
+        border-top: 1px solid #333;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Escalabilidade na Prática</h1>
+      <p class="subtitle">KIT DE SOBREVIVÊNCIA • SNCT 2025</p>
+      <p style="margin-top: 1rem; color: #ccc">
+        Um guia rápido para entender como o sistema funciona sem "tech-ês".
+      </p>
+    </header>
+
+    <div class="container">
+      <section>
+        <h2>🍔 A Grande Analogia do Fast-Food</h2>
+        <p>
+          Para entender como processamos milhões de votos, imagine o sistema
+          como uma lanchonete gigantesca:
+        </p>
+
+        <div class="analogy-box">
+          <span class="analogy-title">O Fluxo do Pedido (Voto)</span>
+          <ul style="list-style: none">
+            <li style="margin-bottom: 10px">
+              📱 <strong>Frontend (React):</strong>
+              <img src="./images/react-ninja.png" alt="Mascote React" /> É o
+              <em>Cardápio Digital</em> (totem) onde você clica para escolher
+              seu lanche.
+            </li>
+            <li style="margin-bottom: 10px">
+              👔 <strong>Load Balancer (Nginx):</strong> É o
+              <em>Recepcionista</em> que organiza a fila e aponta para qual
+              caixa está livre.
+            </li>
+            <li style="margin-bottom: 10px">
+              ⚡ <strong>API (Go):</strong>
+              <img src="./images/gopher.png" alt="Mascote Go" /> São os
+              <em>Atendentes do Caixa</em>. Eles são super rápidos, apenas
+              anotam o pedido e jogam o papel para a cozinha. Eles não cozinham!
+            </li>
+            <li style="margin-bottom: 10px">
+              📨 <strong>Mensageria (Redis/Channels):</strong>
+              <img src="./images/redis.png" alt="Mascote Redis" /> É o
+              <em>Varal de Pedidos</em> na cozinha. O pedido fica ali esperando.
+            </li>
+            <li style="margin-bottom: 10px">
+              👨‍🍳 <strong>Worker:</strong> É o <em>Cozinheiro</em>. Ele pega o
+              papel do varal e efetivamente prepara (salva) o pedido no banco.
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <section>
+        <h2>🧠 Conceitos Chave</h2>
+        <div class="card-grid">
+          <div class="card">
+            <span class="card-icon">📞</span>
+            <span class="card-title">HTTP vs. WebSocket</span>
+            <p><strong>Técnico:</strong> Protocolos de comunicação.</p>
+            <br />
+            <p>
+              <strong>A Analogia:</strong> HTTP é como mandar uma
+              <em>carta</em>: você envia, espera e recebe uma resposta.
+              WebSocket é como uma <em>chamada telefônica</em>: a linha fica
+              aberta e os dois lados falam a qualquer hora.
+            </p>
+            <p
+              style="
+                margin-top: 10px;
+                font-size: 0.9em;
+                color: var(--accent-react);
+              "
+            >
+              Usamos WebSocket para atualizar os votos em tempo real!
+            </p>
+          </div>
+
+          <div class="card">
+            <span class="card-icon">⏱️</span>
+            <span class="card-title">Consistência Eventual</span>
+            <p>
+              <strong>Técnico:</strong> Modelo de consistência em sistemas
+              distribuídos.
+            </p>
+            <br />
+            <p>
+              <strong>A Analogia:</strong> O <em>Placar do Estádio</em> vs. A
+              <em>Súmula do Juiz</em>. O placar muda na hora (rápido), mas a
+              verdade absoluta oficial (banco de dados) pode demorar alguns
+              milissegundos para ser carimbada.
+            </p>
+            <p
+              style="
+                margin-top: 10px;
+                font-size: 0.9em;
+                color: var(--accent-warning);
+              "
+            >
+              Priorizamos velocidade; os dados se alinham "eventualmente".
+            </p>
+          </div>
+
+          <div class="card">
+            <span class="card-icon">🚧</span>
+            <span class="card-title">Rate Limiting</span>
+            <p><strong>Técnico:</strong> Controle de tráfego de rede.</p>
+            <br />
+            <p>
+              <strong>A Analogia:</strong> A <em>Catraca do Metrô</em> ou o
+              <em>Segurança da Balada</em>. Só deixa passar X pessoas por
+              minuto. Se tentar passar 100 pessoas de vez na porta, trava.
+            </p>
+          </div>
+
+          <div class="card">
+            <span class="card-icon">🚀</span>
+            <span class="card-title">Cache (Redis)</span>
+            <p><strong>Técnico:</strong> Armazenamento em memória volátil.</p>
+            <br />
+            <p>
+              <strong>A Analogia:</strong> A <em>Memória de Curto Prazo</em> do
+              atendente ou uma <em>Cola na Mão</em>. É muito mais rápido olhar
+              para a mão do que ir buscar o arquivo lá na gaveta do escritório
+              (Banco de Dados).
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>📈 Vertical vs. Horizontal</h2>
+        <p>Existem dois jeitos de fazer o sistema aguentar mais tranco:</p>
+
+        <div class="card-grid" style="margin-top: 1.5rem">
+          <div class="card">
+            <img
+              src="./images/hulk.png"
+              alt="Personagem Hulk"
+              class="mascot-img"
+            />
+            <span class="card-title">Escalabilidade Vertical</span>
+            <p><strong>A Estratégia do "Hulk"</strong></p>
+            <p style="font-size: 0.9em; color: #ccc; margin: 10px 0">
+              Você pega o servidor atual e coloca mais memória, mais CPU e um
+              SSD mais rápido.
+            </p>
+            <ul
+              style="
+                text-align: left;
+                font-size: 0.85em;
+                margin-top: 10px;
+                padding-left: 20px;
+              "
+            >
+              <li style="color: var(--accent-redis)">
+                ❌ Tem limite físico (uma hora a máquina não melhora mais).
+              </li>
+              <li style="color: var(--accent-redis)">
+                ❌ Se quebrar, o sistema todo cai.
+              </li>
+            </ul>
+          </div>
+
+          <div class="card" style="border: 2px solid var(--accent-go)">
+            <img
+              src="./images/minions.png"
+              alt="Minions imagem"
+              class="mascot-img"
+            />
+            <span class="card-title">Escalabilidade Horizontal</span>
+            <p><strong>A Estratégia dos "Minions"</strong></p>
+            <p style="font-size: 0.9em; color: #ccc; margin: 10px 0">
+              Você não melhora a máquina. Você compra 10 máquinas baratas e
+              coloca elas para trabalharem juntas.
+            </p>
+            <ul
+              style="
+                text-align: left;
+                font-size: 0.85em;
+                margin-top: 10px;
+                padding-left: 20px;
+              "
+            >
+              <li style="color: var(--accent-go)">
+                ✅ Infinita (só adicionar mais máquinas).
+              </li>
+              <li style="color: var(--accent-go)">
+                ✅ Se uma quebrar, as outras assumem.
+              </li>
+            </ul>
+            <p
+              style="
+                margin-top: 10px;
+                font-size: 0.8em;
+                background: #444;
+                padding: 5px;
+                border-radius: 4px;
+              "
+            >
+              🌟 É isso que vamos mostrar hoje!
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>🛠️ Quem é Quem?</h2>
+        <div class="card-grid">
+          <div class="card" style="border-top: 4px solid var(--accent-go)">
+            <img
+              src="./images/gopher.png"
+              alt="Mascote Go (Gopher)"
+              class="mascot-img"
+            />
+            <span class="card-title">Go (Golang)</span>
+            <p>
+              A linguagem do Backend. Famosa por conseguir fazer milhares de
+              coisas ao mesmo tempo (concorrência) sem suar.
+            </p>
+          </div>
+          <div class="card" style="border-top: 4px solid var(--accent-react)">
+            <img
+              src="./images/react-ninja.png"
+              alt="Mascote React (Ninja)"
+              class="mascot-img"
+            />
+            <span class="card-title">React</span>
+            <p>
+              A biblioteca do Frontend. É quem desenha a tela e faz tudo parecer
+              um aplicativo de celular fluido.
+            </p>
+          </div>
+          <div class="card" style="border-top: 4px solid var(--accent-redis)">
+            <img
+              src="./images/redis.png"
+              alt="Mascote Redis"
+              class="mascot-img"
+            />
+            <span class="card-title">Redis</span>
+            <p>
+              O "The Flash" do sistema. Usado para filas rápidas e cache. Se
+              piscar, ele já processou.
+            </p>
+          </div>
+          <div class="card" style="border-top: 4px solid var(--accent-docker)">
+            <img
+              src="./images/docker-whale.png"
+              alt="Mascote Docker (Baleia)"
+              class="mascot-img"
+            />
+            <span class="card-title">Docker</span>
+            <p>
+              A "Marmita Térmica". Garante que o código que rodou no computador
+              do Éric vai rodar igual no servidor, sem estragar.
+            </p>
+          </div>
+          <div
+            class="card"
+            style="border-top: 4px solid var(--accent-cassandra)"
+          >
+            <img
+              src="./images/cassandra-eye.png"
+              alt="Mascote Cassandra (Olho)"
+              class="mascot-img"
+            />
+            <span class="card-title">Cassandra</span>
+            <p>
+              O "Cofre Indestrutível". Diferente do Redis (que é rápido, mas
+              volátil), o Cassandra grava no disco e espalha cópias dos votos.
+              Se um servidor explodir, o voto está salvo em outro.
+            </p>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <footer>
+      <p>Desenvolvido com para a SNCT 2025</p>
+      <p style="font-size: 0.8em; margin-top: 5px">
+        Isabelle Saahirah & Éric Santos
+      </p>
+    </footer>
+  </body>
+</html>
